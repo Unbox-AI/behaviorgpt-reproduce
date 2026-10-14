@@ -1,0 +1,16 @@
+# Virtual environment (uv creates this locally at .venv)
+.venv/
+
+# Python and tool caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# API key
+.env
+
+# Benchmark data and scored positions written by the notebooks
+data/
+results/

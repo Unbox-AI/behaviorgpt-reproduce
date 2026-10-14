@@ -1,0 +1,52 @@
+[project]
+name = "behaviorgpt-reproduce"
+version = "0.1.0"
+description = "Reproduce the BehaviorGPT benchmark results through the public API"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Unbox AI" }]
+requires-python = ">=3.11"
+dependencies = [
+    "behaviorgpt>=0.1.0",
+    "httpx>=0.28.1",
+    "ipykernel>=7.3.0",
+    "jupyterlab>=4.6.3",
+    "matplotlib>=3.11.1",
+    "numpy>=2.4.6",
+    "pandas>=3.0.5",
+    "pyarrow>=25.0.1",
+    "python-dotenv>=1.2.3",
+    "tqdm>=4.70.1",
+]
+
+[project.urls]
+Repository = "https://github.com/Unbox-AI/behaviorgpt-reproduce"
+SDK = "https://github.com/Unbox-AI/behaviorgpt"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "ruff>=0.16.2",
+]
+
+[tool.uv]
+package = false
+# resolve only releases from before the cutoff, except behaviorgpt, our own SDK
+exclude-newer = "2026-10-07T00:00:00Z"
+exclude-newer-package = { behaviorgpt = "2026-10-14T00:00:00Z" }
+
+[tool.ruff]
+target-version = "py311"
+line-length = 88
+exclude = ["notebooks/*"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["behaviorgpt"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --strict-markers"
